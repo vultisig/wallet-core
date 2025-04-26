@@ -13,10 +13,17 @@ settings:
     release:
       SWIFT_OPTIMIZATION_LEVEL: -Owholemodule
       SWIFT_COMPILATION_MODE: wholemodule
+packages:
+  SwiftProtobuf:
+    url: https://github.com/apple/swift-protobuf.git
+    version: "1.29.0"
 targets:
   WalletCore:
     type: framework
-    platform: iOS
+    platform: [iOS,macOS]
+    deploymentTarget:
+      iOS: '13.0'
+      macOS: '14.5'
     sources:
       - path: include
         headerVisibility: public
@@ -33,15 +40,16 @@ targets:
           - "Hedera/Protobuf/*.proto"
       - Sources
     dependencies:
-      - target: trezor-crypto
+      - target: trezor-crypto_${platform}
         link: true
-      - target: protobuf
+      - target: protobuf_${platform}
         link: true
       - sdk: libc++.tbd
       - framework: WalletCoreRs.xcframework
+      - package: SwiftProtobuf
     scheme:
       testTargets:
-        - WalletCoreTests
+        - WalletCoreTests_${platform}
       gatherCoverageData: true
     settings:
       SKIP_INSTALL: false
@@ -66,15 +74,21 @@ targets:
 
   WalletCoreTests:
     type: bundle.unit-test
-    platform: iOS
+    platform: [iOS,macOS]
+    deploymentTarget:
+      iOS: '13.0'
+      macOS: '14.5'
     sources: [Tests]
     dependencies:
-      - target: WalletCore
+      - target: WalletCore_${platform}
       - sdk: libc++.tbd
 
   trezor-crypto:
     type: library.static
-    platform: iOS
+    platform: [iOS,macOS]
+    deploymentTarget:
+      iOS: '13.0'
+      macOS: '14.5'
     sources:
       - trezor-crypto/crypto/bignum.c
       - trezor-crypto/crypto/ecdsa.c
@@ -142,7 +156,10 @@ targets:
 
   protobuf:
     type: library.static
-    platform: iOS
+    platform: [iOS,macOS]
+    deploymentTarget:
+      iOS: '13.0'
+      macOS: '14.5'
     sources:
       - protobuf/google/protobuf/any.cc
       - protobuf/google/protobuf/any.pb.cc

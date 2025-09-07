@@ -42,7 +42,6 @@ targets:
         link: true
       - sdk: libc++.tbd
       - framework: WalletCoreRs.xcframework
-      - framework: ../build/ios-walletcore-swiftprotobuf/WalletCoreSwiftProtobuf.xcframework
     scheme:
       testTargets:
         - WalletCoreTests_${platform}

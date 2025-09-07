@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# This script builds dynamic WalletCore and SwiftProtobuf xcframework for SPM and CocoaPods
+#
+
+set -e
+
+FRAMEWORK=TrustWalletCore
+BUILD_FOLDER=build/ios-walletcore-swiftprotobuf
+
+#echo "Building Docc..."
+#tools/ios-doc
+
+echo "Building xcframework..."
+#pushd swift
+
+#fastlane ios xcframework
+
+init() {
+    pushd swift
+    xcodegen -s project-swiftprotobuf.yml
+    pod install
+    popd
+    rm -rf $BUILD_FOLDER/
+    mkdir -p $BUILD_FOLDER
+}
+
+build() {
+    echo "Building scheme: $1, destination: $2, path: $3"
+    xcodebuild archive -workspace swift/${FRAMEWORK}.xcworkspace -scheme "$1" -destination "$2" -archivePath "$BUILD_FOLDER/$3".xcarchive SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES | xcbeautify
+}
+
+build_ios_arm64() {
+    build "WalletCoreSwiftProtobuf-iOS" "generic/platform=iOS" "ios-arm64"
+}
+
+build_ios_simulator() {
+    build "WalletCoreSwiftProtobuf-iOS" "generic/platform=iOS Simulator" "ios-arm64_x86_64-simulator"
+}
+
+build_ios_mac_catalyst() {
+    build "WalletCoreSwiftProtobuf-iOS" "platform=macOS,arch=x86_64,variant=Mac Catalyst" "ios-x86_64_arm64-maccatalyst"
+}
+
+build_mac_x64_arm64() {
+    build "WalletCoreSwiftProtobuf-macOS" "generic/platform=macOS" "macos-arm64_x86_64"
+}
+
+create_xc_framework() {
+    echo "Createing xcframework..."
+    xcodebuild -create-xcframework -output $BUILD_FOLDER/WalletCoreSwiftProtobuf.xcframework \
+        -framework $BUILD_FOLDER/ios-arm64.xcarchive/Products/Library/Frameworks/WalletCoreSwiftProtobuf.framework \
+        -framework $BUILD_FOLDER/ios-arm64_x86_64-simulator.xcarchive/Products/Library/Frameworks/WalletCoreSwiftProtobuf.framework \
+        -framework $BUILD_FOLDER/ios-x86_64_arm64-maccatalyst.xcarchive/Products/Library/Frameworks/WalletCoreSwiftProtobuf.framework \
+        -framework $BUILD_FOLDER/macos-arm64_x86_64.xcarchive/Products/Library/Frameworks/WalletCoreSwiftProtobuf.framework
+}
+main() {
+    init
+    build_mac_x64_arm64
+    build_ios_mac_catalyst
+    build_ios_arm64 && build_ios_simulator
+    create_xc_framework
+}
+main
+popd

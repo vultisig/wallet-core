@@ -6,12 +6,21 @@ inhibit_all_warnings!
 
 project 'TrustWalletCore.xcodeproj'
 
-target 'WalletCore' do
+target 'WalletCore_iOS' do
+  platform :ios, deployment_target
   use_frameworks!
 
   pod 'WalletCoreSwiftProtobuf'
 
-  target 'WalletCoreTests'
+  target 'WalletCoreTests_iOS'
+end
+target 'WalletCore_macOS' do
+  platform :macos, deployment_target
+  use_frameworks!
+
+  pod 'WalletCoreSwiftProtobuf'
+
+  target 'WalletCoreTests_macOS'
 end
 
 post_install do |installer|

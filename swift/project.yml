@@ -14,9 +14,9 @@ settings:
       SWIFT_OPTIMIZATION_LEVEL: -Owholemodule
       SWIFT_COMPILATION_MODE: wholemodule
 packages:
-  SwiftProtobuf:
-    url: https://github.com/apple/swift-protobuf.git
-    version: "1.29.0"
+  WalletCoreSwiftProtobuf:
+    url: https://github.com/vultisig/WalletCoreSwiftProtobuf
+    branch: main
 targets:
   WalletCore:
     type: framework
@@ -46,7 +46,7 @@ targets:
         link: true
       - sdk: libc++.tbd
       - framework: WalletCoreRs.xcframework
-      - package: SwiftProtobuf
+      - package: WalletCoreSwiftProtobuf
     scheme:
       testTargets:
         - WalletCoreTests_${platform}

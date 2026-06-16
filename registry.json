@@ -1985,11 +1985,11 @@
     "addressHasher": "keccak256",
     "ss58Prefix": 0,
     "explorer": {
-      "url": "https://polkadot.subscan.io",
+      "url": "https://assethub-polkadot.subscan.io",
       "txPath": "/extrinsic/",
       "accountPath": "/account/",
-      "sampleTx": "0xb96f97d8ee508f420e606e1a6dcc74b88844713ddec2bd7cf4e3aa6b1d6beef4",
-      "sampleAccount": "13hJFqnkqQbmgnGQteGntjMjTdmTBRE8Z93JqxsrpgT7Yjd2"
+      "sampleTx": "0x5aaaeec678ab1bd5a19d2c9bfd596037a32e3d1e831383c62f315459e85fa85d",
+      "sampleAccount": "14QKFrBmnhP5xoH1t7nC2q7mssgj671AhzThsGewVj3Ea8Xt"
     },
     "info": {
       "url": "https://polkadot.network/",
@@ -2097,11 +2097,11 @@
     "addressHasher": "keccak256",
     "ss58Prefix": 2,
     "explorer": {
-      "url": "https://kusama.subscan.io",
+      "url": "https://assethub-kusama.subscan.io",
       "txPath": "/extrinsic/",
       "accountPath": "/account/",
-      "sampleTx": "0xcbe0c2e2851c1245bedaae4d52f06eaa6b4784b786bea2f0bff11af7715973dd",
-      "sampleAccount": "DbCNECPna3k6MXFWWNZa5jGsuWycqEE6zcUxZYkxhVofrFk"
+      "sampleTx": "0x834220074151531626b34acf4568cd5763a47b2eb2647bd0f0b7e46f980e0c50",
+      "sampleAccount": "FfnS7Vk2i19AdFMf6D8ZRVUhNsYWVtsLmqQEnAmTqQBqsSy"
     },
     "info": {
       "url": "https://kusama.network",
@@ -3090,6 +3090,11 @@
     "derivation": [
       {
         "path": "m/44'/60'/0'/0/0"
+      },
+      {
+        "name": "stable_account",
+        "path": "m/44'/60'/9172'/3604/9999",
+        "description": "TrustWallet's specific derivation path for Stable Account wallets"
       }
     ],
     "curve": "secp256k1",
@@ -3842,7 +3847,7 @@
     "chainId": "321",
     "addressHasher": "keccak256",
     "explorer": {
-      "url": "https://explorer.kcc.io/en",
+      "url": "https://scan.kcc.io",
       "txPath": "/tx/",
       "accountPath": "/address/",
       "sampleTx": "0x2f0d79cd289a02f3181b68b9583a64c3809fe7387810b274275985c29d02c80d",
@@ -4909,6 +4914,125 @@
       "url": "https://plasma.to",
       "rpc": "https://rpc.plasma.to",
       "documentation": "https://plasmascan.to/documentation"
+    }
+  },
+  {
+    "id": "monad",
+    "name": "Monad",
+    "displayName": "Monad",
+    "coinId": 10143,
+    "symbol": "MON",
+    "decimals": 18,
+    "blockchain": "Ethereum",
+    "derivation": [
+      {
+        "path": "m/44'/60'/0'/0/0"
+      }
+    ],
+    "curve": "secp256k1",
+    "publicKeyType": "secp256k1Extended",
+    "chainId": "143",
+    "addressHasher": "keccak256",
+    "explorer": {
+      "url": "https://monvision.io",
+      "txPath": "/tx/",
+      "accountPath": "/address/",
+      "sampleTx": "0x8394f9f01bc2ae2cc93e19170bf80c303210f6f4198e5ec3cc99b0cba04962b6",
+      "sampleAccount": "0x6ab69B482987b0BA1f1c96BDbDC192a80CB09132"
+    },
+    "info": {
+      "url": "https://www.monad.xyz",
+      "rpc": "https://rpc.monad.xyz",
+      "documentation": "https://docs.monad.xyz"
+    }
+  },
+  {
+    "id": "megaeth",
+    "name": "MegaETH",
+    "coinId": 4326,
+    "symbol": "ETH",
+    "decimals": 18,
+    "blockchain": "Ethereum",
+    "derivation": [
+      {
+        "path": "m/44'/60'/0'/0/0"
+      }
+    ],
+    "curve": "secp256k1",
+    "publicKeyType": "secp256k1Extended",
+    "chainId": "4326",
+    "addressHasher": "keccak256",
+    "explorer": {
+      "url": "https://megaeth.blockscout.com",
+      "txPath": "/tx/",
+      "accountPath": "/address/",
+      "sampleTx": "0x9021590996bda7682485fff4ab1ed221cea2fa0b352073f69e5a76114c7ed81a",
+      "sampleAccount": "0x6a4D1b2fC6a894928979F152A8c9245D96860604"
+    },
+    "info": {
+      "url": "https://www.megaeth.com",
+      "rpc": "https://mainnet.megaeth.com/rpc",
+      "documentation": "https://docs.megaeth.com"
+    }
+  },
+  {
+    "id": "seievm",
+    "name": "Sei EVM",
+    "coinId": 1329,
+    "symbol": "SEI",
+    "decimals": 18,
+    "blockchain": "Ethereum",
+    "derivation": [
+      {
+        "path": "m/44'/60'/0'/0/0"
+      }
+    ],
+    "curve": "secp256k1",
+    "publicKeyType": "secp256k1Extended",
+    "chainId": "1329",
+    "addressHasher": "keccak256",
+    "explorer": {
+      "url": "https://seiscan.io",
+      "txPath": "/tx/",
+      "accountPath": "/address/",
+      "sampleTx": "0xe59dddcf9a93551399780d907eeee52fdbc44ead6406012368470d47979b7362",
+      "sampleAccount": "0xc5c8d37a73d96a925f770b5481f719df8d1a1b9e"
+    },
+    "info": {
+      "url": "https://www.sei.io",
+      "source": "https://github.com/sei-protocol",
+      "rpc": "https://evm-rpc.sei-apis.com",
+      "documentation": "https://docs.sei.io"
+    }
+  },
+  {
+    "id": "hyperevm",
+    "name": "HyperEVM",
+    "coinId": 10000999,
+    "symbol": "HYPE",
+    "decimals": 18,
+    "blockchain": "Ethereum",
+    "derivation": [
+      {
+        "path": "m/44'/60'/0'/0/0"
+      }
+    ],
+    "curve": "secp256k1",
+    "publicKeyType": "secp256k1Extended",
+    "chainId": "999",
+    "addressHasher": "keccak256",
+    "explorer": {
+      "url": "https://hyperevmscan.io",
+      "txPath": "/tx/",
+      "accountPath": "/address/",
+      "sampleTx": "0xc79cb0bcc08995ac78f74f4a62bfd721d50a7368979b8025f3f8c229bb5a334c",
+      "sampleAccount": "0x3c43014aedbb496e173059f94bfe3b0ed1d55ba0"
+    },
+    "info": {
+      "url": "https://hyperfoundation.org",
+      "source": "https://github.com/hyperliquid-dex",
+      "rpc": "https://rpc.hyperliquid.xyz/evm",
+      "documentation": "https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/hyperevm"
     }
   }
 ]

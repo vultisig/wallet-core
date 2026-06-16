@@ -20,6 +20,8 @@ class PrivateKey {
     static const size_t _size = 32;
     /// The number of bytes in a Cardano key (two extended ed25519 keys + chain code)
     static const size_t cardanoKeySize = 2 * 3 * 32;
+    /// The number of bytes in an ECDSA message digest (e.g., 32-byte hash) that can be signed.
+    static const size_t ecdsaMessageSize = 32;
 
     /// The private key bytes:
     /// - common case: 'size' bytes
@@ -47,10 +49,19 @@ class PrivateKey {
     /// @deprecated Use PrivateKey(const Data& data, TWCurve curve) instead
     explicit PrivateKey(const Data& data);
 
-    /// Initializes a private key with an array of bytes and a curve.  
+    /// Initializes a private key with an array of bytes.  Size must be exact (normally 32, or 192 for extended)
+    /// @deprecated Use PrivateKey(const Data& data, TWCurve curve) instead
+    explicit PrivateKey(Data&& data);
+
+    /// Initializes a private key with an array of bytes and a curve.
     /// Size of the data must be exact (normally 32, or 192 for extended)
     /// Signing functions will throw an exception if the provided curve is different from the one specified.
     explicit PrivateKey(const Data& data, TWCurve curve);
+
+    /// Initializes a private key with an array of bytes and a curve.
+    /// Size of the data must be exact (normally 32, or 192 for extended)
+    /// Signing functions will throw an exception if the provided curve is different from the one specified.
+    explicit PrivateKey(Data&& data, TWCurve curve);
 
     /// Initializes a private key from a string of bytes.
     /// @deprecated Use PrivateKey(const std::string& data, TWCurve curve) instead
@@ -74,10 +85,10 @@ class PrivateKey {
         TWCurve curve);
 
     PrivateKey(const PrivateKey& other) = default;
-    PrivateKey& operator=(const PrivateKey& other) = default;
+    PrivateKey& operator=(const PrivateKey& other) noexcept;
 
     PrivateKey(PrivateKey&& other) = default;
-    PrivateKey& operator=(PrivateKey&& other) = default;
+    PrivateKey& operator=(PrivateKey&& other) noexcept;
 
     virtual ~PrivateKey() { cleanup(); }
 

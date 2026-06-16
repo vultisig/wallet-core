@@ -85,12 +85,18 @@ static inline Proto::SigningOutput sign(const proto::TransactionBody& body, cons
 
 namespace TW::Hedera {
 
-Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) noexcept {
-    auto privateKey = PrivateKey(Data(input.private_key().begin(), input.private_key().end()), TWCurveED25519);
+Proto::SigningOutput Signer::sign(const Proto::SigningInput& input) {
+    auto privateKey = PrivateKey(input.private_key(), TWCurveED25519);
     auto body = internals::transactionBodyPrerequisites(input);
 
     switch (input.body().data_case()) {
     case Proto::TransactionBody::kTransfer: {
+        if (input.body().transfer().amount() <= 0) {
+            auto output = Proto::SigningOutput();
+            output.set_error(Common::Proto::Error_invalid_params);
+            output.set_error_message("Transfer amount must be positive");
+            return output;
+        }
         *body.mutable_cryptotransfer() = internals::cryptoTransferFromInput(input);
         break;
     }

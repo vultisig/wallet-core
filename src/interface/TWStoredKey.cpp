@@ -221,6 +221,17 @@ bool TWStoredKeyStore(struct TWStoredKey* _Nonnull key, TWString* _Nonnull path)
     }
 }
 
+bool TWStoredKeyStoreWithTemporaryFile(struct TWStoredKey* _Nonnull key, TWString* _Nonnull path, TWString* _Nonnull temporaryPath) {
+    try {
+        const auto& pathString = *reinterpret_cast<const std::string*>(path);
+        const auto& temporaryPathString = *reinterpret_cast<const std::string*>(temporaryPath);
+        key->impl.storeWithTemporaryFile(pathString, temporaryPathString);
+        return true;
+    } catch (...) {
+        return false;
+    }
+}
+
 TWData* _Nullable TWStoredKeyDecryptPrivateKey(struct TWStoredKey* _Nonnull key, TWData* _Nonnull password) {
     try {
         const auto passwordData = TW::data(TWDataBytes(password), TWDataSize(password));
@@ -283,6 +294,16 @@ bool TWStoredKeyFixAddresses(struct TWStoredKey* _Nonnull key, TWData* _Nonnull 
     try {
         const auto passwordData = TW::data(TWDataBytes(password), TWDataSize(password));
         key->impl.fixAddresses(passwordData);
+        return true;
+    } catch (...) {
+        return false;
+    }
+}
+
+bool TWStoredKeyFixEncryption(struct TWStoredKey* _Nonnull key, TWData* _Nonnull password) {
+    try {
+        const auto passwordData = TW::data(TWDataBytes(password), TWDataSize(password));
+        key->impl.fixEncryption(passwordData);
         return true;
     } catch (...) {
         return false;

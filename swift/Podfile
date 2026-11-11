@@ -33,6 +33,8 @@ post_install do |installer|
     target.build_configurations.each do |config|
       # remove deployment_target from target level
       config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      # CocoaPods emits 10.13 for macOS pod targets; Xcode now requires >= 12.0 (matches podspec)
+      config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '12.0'
     end
   end
 end

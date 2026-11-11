@@ -35,7 +35,7 @@ build_ios_simulator() {
 }
 
 build_ios_mac_catalyst() {
-    build "${FRAMEWORK}_iOS" "platform=macOS,arch=x86_64,variant=Mac Catalyst" "ios-x86_64_arm64-maccatalyst"
+    build "${FRAMEWORK}_iOS" "generic/platform=macOS,variant=Mac Catalyst" "ios-x86_64_arm64-maccatalyst"
 }
 
 build_mac_x64_arm64() {

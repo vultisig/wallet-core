@@ -18,7 +18,7 @@ targets:
     type: framework
     platform: [iOS,macOS]
     deploymentTarget:
-      iOS: '13.0'
+      iOS: '15.0'
       macOS: '14.5'
     sources:
       - path: include
@@ -72,7 +72,7 @@ targets:
     type: bundle.unit-test
     platform: [iOS,macOS]
     deploymentTarget:
-      iOS: '13.0'
+      iOS: '15.0'
       macOS: '14.5'
     sources: [Tests]
     dependencies:
@@ -83,7 +83,7 @@ targets:
     type: library.static
     platform: [iOS,macOS]
     deploymentTarget:
-      iOS: '13.0'
+      iOS: '15.0'
       macOS: '14.5'
     sources:
       - trezor-crypto/crypto/bignum.c
@@ -154,7 +154,7 @@ targets:
     type: library.static
     platform: [iOS,macOS]
     deploymentTarget:
-      iOS: '13.0'
+      iOS: '15.0'
       macOS: '14.5'
     sources:
       - protobuf/google/protobuf/any.cc

@@ -39,7 +39,7 @@ build_ios_simulator() {
 }
 
 build_ios_mac_catalyst() {
-    build "WalletCoreSwiftProtobuf-iOS" "platform=macOS,arch=x86_64,variant=Mac Catalyst" "ios-x86_64_arm64-maccatalyst"
+    build "WalletCoreSwiftProtobuf-iOS" "generic/platform=macOS,variant=Mac Catalyst" "ios-x86_64_arm64-maccatalyst"
 }
 
 build_mac_x64_arm64() {

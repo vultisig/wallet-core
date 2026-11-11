@@ -5,7 +5,7 @@
 import "mocha";
 import { assert } from "chai";
 import { TW } from "../../dist";
-import * as Long from "long";
+import Long = require("long");
 
 describe("Zcash", () => {
     // Successfully broadcasted: https://explorer.zcha.in/transactions/ec9033381c1cc53ada837ef9981c03ead1c7c41700ff3a954389cfaddc949256
@@ -43,6 +43,7 @@ describe("Zcash", () => {
                 // Set ZCash specific extra parameters.
                 zcashExtraData: {
                     branchId: sapplingBranchId,
+                    txVersion: TW.Zcash.Proto.TransactionVersion.V4,
                 },
             },
             privateKeys: [privateKeyData],
